@@ -12,7 +12,7 @@ SAMPLES = [(5.0, 3.4, 1.5, 0.2), (5.9, 2.8, 4.3, 1.3), (6.6, 3.0, 5.6, 2.1)]
 KEYS = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
 
 for _ in range(count):
-    values = [round(v + random.uniform(-0.3, 0.3), 2) for v in random.choice(SAMPLES)]
+    values = [round(max(0.1, v + random.uniform(-0.3, 0.3)), 2) for v in random.choice(SAMPLES)]
     body = json.dumps(dict(zip(KEYS, values))).encode()
     request = urllib.request.Request(url, body, {"Content-Type": "application/json"})
     urllib.request.urlopen(request).read()
